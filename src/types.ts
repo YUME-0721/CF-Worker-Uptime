@@ -60,7 +60,7 @@ export const IncidentSchema = z.object({
   id: z.string(),
   title: z.string(),
   type: z.enum(['scheduled', 'routine', 'incident']),
-  status: z.enum(['upcoming', 'in_progress', 'completed', 'investigating', 'identified', 'monitoring', 'resolved']),
+  status: z.enum(['scheduled', 'upcoming', 'in_progress', 'completed', 'investigating', 'identified', 'monitoring', 'resolved']),
   affected_monitors: z.array(z.string()).optional(),
   start_time: z.string().optional(),
   end_time: z.string().optional(),

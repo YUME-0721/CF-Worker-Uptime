@@ -31,6 +31,8 @@ app.get('/api/config', (c) => {
   const safeConfig = {
     settings: {
       title: config.settings.title,
+      logo: config.settings.logo,
+      tags: config.settings.tags,
       // hide callback_url/secret
     },
     groups: config.groups,

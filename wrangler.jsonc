@@ -3,43 +3,44 @@
   "name": "uptime-monitor",
   "main": "src/index.ts",
   "compatibility_date": "2024-01-01",
-  "compatibility_flags": ["nodejs_compat"],
-
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   // Cron 触发器（每分钟执行一次）
   "triggers": {
-    "crons": ["* * * * *"]
+    "crons": [
+      "* * * * *"
+    ]
   },
-
   // D1 数据库绑定
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "uptime-db",
-      "database_id": "8cc4d5f1-fc03-43e9-a2f2-0047fd668e49"
+      "database_id": "3af95d6f-a9d6-4ee1-8df8-7c54638fbd62"
     }
   ],
-
   // 模块规则：允许将 YAML 和 HTML 作为文本导入
   "rules": [
     {
       "type": "Text",
-      "globs": ["**/*.yaml", "**/*.html"],
+      "globs": [
+        "**/*.yaml",
+        "**/*.html"
+      ],
       "fallthrough": true
     }
   ],
-
   // 可观测性配置
   "observability": {
     "enabled": false,
     "head_sampling_rate": 1,
-
     "logs": {
       "enabled": true,
       "head_sampling_rate": 1,
       "persist": true,
       "invocation_logs": true
     },
-
     "traces": {
       "enabled": false,
       "persist": true,

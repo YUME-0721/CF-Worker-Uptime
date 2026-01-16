@@ -2,11 +2,9 @@
 
 settings:
   title: "YumeKai System Status"
-  logo: "https://pixport.072199.xyz/images/2026/01/15/e16d1e01d096e5e103f10f0647b06ba62a416836389aa3b39fa672d7949a701c.jpeg" # Optional: URL to your logo image
+  logo: "https://pixport.072199.xyz/images/2026/01/15/e16d1e01d096e5e103f10f0647b06ba62a416836389aa3b39fa672d7949a701c.jpeg"
   callback_url: ""
   callback_secret: ""
-  # If true, only send notifications when status changes to DOWN.
-  # DEGRADED or UP (recovery) events will NOT trigger notifications.
   notification_on_down_only: true 
   summary_exclusion: ["major_services"]
   tags:
@@ -44,41 +42,14 @@ settings:
       label: "Self-Hosted"
       color: "#4B5563"
 
-incidents:
-#   - id: "maintenance-001"
-#     title: "Database Migration"
-#     type: "scheduled" # scheduled, routine, incident
-#     status: "scheduled" # upcoming, in_progress, completed
-#     affected_monitors: ["uptimekuma", "vw_nas"]
-#     start_time: "2026-01-10T02:00:00Z"
-#     end_time: "2026-01-10T04:00:00Z"
-#     updates:
-#       - timestamp: "2026-01-04T10:00:00Z"
-#         message: "Maintenance scheduled for next week."
-#         status: "scheduled"
-
-#   - id: "routine-backup"
-#     title: "Weekly Backup"
-#     type: "routine"
-#     status: "in_progress" # Will show as active during the time window if we had logic, but for now it's static config
-#     routine_schedule: "Every Sunday 03:00 UTC"
-#     affected_monitors: ["blog"]
-    
-  #  - id: "incident-001"
-  #    title: "DDoS 攻击"
-  #    type: "incident"
-  #    status: "investigating" # investigating, identified, monitoring, resolved
-  #    affected_monitors: ["blog_eo"]
-  #    start_time: "2026-01-04T12:37:00Z"
-  #    updates:
-  #      - timestamp: "2026-01-04T13:26:00Z"
-  #        message: "有粉丝汇报分流域名国内节点418，核实是遭受了海外主机攻击。可以点击“博客国内节点”尝试访问，该节点不分流，目前访问正常"
-  #        status: "monitoring"
-
+incidents: []
 
 groups:
+  - id: "blog"
+    name: "博客服务"
+    monitors:
       - id: "blog_eo"
-        name: "博客国内节点"
+        name: "博客国内节点 (EdgeOne)"
         tags: [eopage]
         type: "http"
         url: "https://eo-blog.acofork.com/"
@@ -93,7 +64,7 @@ groups:
           status: 200
 
       - id: "blog_esa"
-        name: "博客国内节点"
+        name: "博客国内节点 (ESA)"
         tags: [esapage]
         type: "http"
         url: "https://esa-blog.acofork.com/"
@@ -122,12 +93,14 @@ groups:
         validation:
           status: 200
 
-
+  - id: "self_hosted"
+    name: "自托管服务"
+    monitors:
       - id: "fnos_nas"
         name: "飞牛 OS"
-        tags: [eo,self]
+        tags: [eo, self]
         type: "http"
-        url: "https://fnos.2780666.xyz
+        url: "https://fnos.2780666.xyz"
         method: "HEAD"
         timeout: 60000
         expected_latency: 1000
@@ -138,7 +111,9 @@ groups:
         validation:
           status: 200
 
-
+  - id: "api_services"
+    name: "API 服务"
+    monitors:
       - id: "eopfapi"
         name: "EO随机图API"
         tags: [eopf]
@@ -169,6 +144,9 @@ groups:
         validation:
           status: 200
 
+  - id: "major_services"
+    name: "主要服务"
+    monitors:
       - id: "cloudflare"
         name: "Cloudflare"
         type: "http"

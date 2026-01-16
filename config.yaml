@@ -52,7 +52,7 @@ groups:
         name: "博客国内节点 (EdgeOne)"
         tags: [eopage]
         type: "http"
-        url: "https://eo-blog.acofork.com/"
+        url: "https://blog.yumekai.top/"
         method: "HEAD"
         timeout: 60000
         expected_latency: 1000
@@ -67,7 +67,7 @@ groups:
         name: "博客国内节点 (ESA)"
         tags: [esapage]
         type: "http"
-        url: "https://esa-blog.acofork.com/"
+        url: "https://blog.yumekai.top/"
         method: "HEAD"
         timeout: 60000
         expected_latency: 1000
@@ -82,7 +82,7 @@ groups:
         name: "博客海外节点"
         tags: [cfp]
         type: "http"
-        url: "https://blog.yumekai.top/"
+        url: "https://blog.072199.xyz/"
         method: "HEAD"
         timeout: 60000
         expected_latency: 1000
@@ -129,11 +129,11 @@ groups:
         validation:
           status: 200
 
-      - id: "eo_umami"
-        name: "Umami 测试环境"
+      - id: "hw-pixport"
+        name: "Pixport 华为云"
         tags: [eopf]
         type: "http"
-        url: "https://eo-umami.acofork.com/"
+        url: "https://pixport.072199.xyz/"
         method: "HEAD"
         timeout: 60000
         expected_latency: 1000

@@ -6,10 +6,10 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  // Cron 触发器（每分钟执行一次）
+  // Cron 触发器（每 5 分钟执行一次）
   "triggers": {
     "crons": [
-      "* * * * *"
+      "*/5 * * * *"
     ]
   },
   // D1 数据库绑定
